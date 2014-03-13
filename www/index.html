@@ -155,8 +155,8 @@
         $('#tapText').html("TAP THE SCREEN: " + tNum);
         $('#thText').html("TAP AND HOLD: " + thNum);
         $('#xText').html("SHAKES ALONG X-AXIS: " + xNum);
-        $('#xText').html("SHAKES ALONG Y-AXIS: " + xNum);
-        $('#xText').html("SHAKES ALONG Z-AXIS: " + xNum);
+        $('#yText').html("SHAKES ALONG Y-AXIS: " + yNum);
+        $('#zText').html("SHAKES ALONG Z-AXIS: " + zNum);
         
         //increase # of times device was rotated
         function addRCount(event)
@@ -229,11 +229,11 @@
         }
         
         /*increase # of times user shook device along x-axis*/
-        function addXCount(event)
+        function addZCount()
         {
-            xNum++;
+            zNum++;
             alert('WE SHOOK ALONG THE Z-AXIS');
-            $('#xText').html("SHAKES ALONG Z-AXIS: " + xNum);
+            $('#zText').html("SHAKES ALONG Z-AXIS: " + zNum);
         }
         
         //WHEN THE DEVICE IS READY SET MY GLOBAL BOOLEAN SO MY FUNCTIONS KNOW IT!
@@ -261,7 +261,7 @@
             
             //if the total change of the acceleroemeter is greater than 3, we're gonna
             //say we moved.
-            if(dX + dY + dZ > 3)
+            if(dX + dY + dZ > 4)
                 sCounter++;
             //or we just didn't move.
             else
