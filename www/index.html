@@ -61,9 +61,6 @@
     </script>
     
     <script>
-        $('#gamePage').live("swipeleft", addSLCount());
-        $('#gamePage').live("swiperight", addSRCount());
-        $('#gamePage').live("tap", addTCount());
     </script>
     
     <!--HERE IS THE START OF MY CODIQA LAYOUT-->
@@ -114,27 +111,27 @@
           <div class="counterText">
               <p style="text-align: center;" data-mce-style="text-align: center;">
                 ROTATE YOUR DEVICE: </p>
-              <div class="counterText" id="rText">
+              <div id="rText">
               </div>
               <br>
               <p style="text-align: center;" data-mce-style="text-align: center;">
                   SWIPE RIGHT: </p>
-              <div class="counterText" id="srText">
+              <div id="srText">
               </div>
               <br>
               <p style="text-align: center;" data-mce-style="text-align: center;">
                 SWIPE LEFT: </p>
-              <div class="counterText" id="slText">
+              <div id="slText">
               </div>
               <br>
               <p style="text-align: center;" data-mce-style="text-align: center;">
                   TAP THE SCREEN: </p>
-              <div class="counterText" id="tapText">
+              <div id="tapText">
               </div>
               <br>
               <p style="text-align: center;" data-mce-style="text-align: center;">
                   TAP AND HOLD: </p>
-              <div class="counterText" id="thText">
+              <div id="thText">
               </div>
               <br>
           </div>
@@ -157,10 +154,43 @@
         var srNum = 0;
         var tNum = 0;
         var thNum = 0;
+        document.querySelector("#slText").innerHTML = slNum;
+        document.querySelector("#srText").innerHTML = srNum;
+        document.querySelector("#tapText").innerHTML = tNum;
+        document.querySelector("#thText").innerHTML = thNum;
+        
+        /*increase # of times user swiped left*/
+        function addSLCount()
+        {
+            slNum++;
+            alert('SWIPED LEFT!!');
+            //$("#slText").text(function(){" " + slNum;});
+            document.querySelector("#slText").innerHTML = slNum;
+        }
+        
+        /*increase # of times user swiped right*/
+        function addSRCount()
+        {
+            srNum++;
+            alert('SWIPED RIGHT!!');
+            //$("#srText").text(function(){" " + srNum;});
+            document.querySelector("#srText").innerHTML = srNum;
+        }
+        
+        function addTCount()
+        {
+            tNum++;
+            alert('TAPPED THE SCREEN!!');
+            //$("#tText").text(function(){" " + tNum;});
+            document.querySelector("#tapText").innerHTML = tNum;
+        }
         
         //WHEN PHONEGAP IS READY I WANT TO LISTEN TO THE ACCELEROMETER AND THE ITEMS!
         function onDeviceReady() {
             navigator.accelerometer.getCurrentAcceleration(onRotateSuccess, onRotateError);
+            $('#gamePage').live("swipeleft", addSLCount());
+            $('#gamePage').live("swiperight", addSRCount());
+            $('#gamePage').live("tap", addTCount());
         }
 
         //onRotateSuccess: Get a snapshot of the current acceleration
@@ -173,30 +203,8 @@
             //increase the counter for the input.
             rNum++;
             //update the rotation counter.
-            $("#rText").text(function(){" " + rNum;});
-        }
-        
-        /*increase # of times user swiped left*/
-        function addSLCount()
-        {
-            slNum++;
-            alert('SWIPED LEFT!!');
-            $("#slText").text(function(){" " + slNum;});
-        }
-        
-        /*increase # of times user swiped right*/
-        function addSRCount()
-        {
-            srNum++;
-            alert('SWIPED RIGHT!!');
-            $("#srText").text(function(){" " + srNum;});
-        }
-        
-        function addTCount()
-        {
-            tNum++;
-            alert('TAPPED THE SCREEN!!');
-            $("#tText").text(function(){" " + tNum;});
+            //$("#rText").text(function(){" " + rNum;});
+            document.querySelector("#rText").innerHTML = rNum;
         }
         
         // onError: Failed to get the acceleration
