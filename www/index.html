@@ -60,6 +60,12 @@
         app.initialize();
     </script>
     
+    <script>
+        $('#gamePage').live("swipeleft", addSLCount());
+        $('#gamePage').live("swiperight", addSRCount());
+        $('#gamePage').live("tap", addTCount());
+    </script>
+    
     <!--HERE IS THE START OF MY CODIQA LAYOUT-->
     <div class="normalPage" data-role="page" data-control-title="Home" data-theme="b"
   id="page1">
@@ -197,10 +203,6 @@
         function onRotateError() {
             alert('onError!');
         }
-        
-        $(document).on("swipeleft", "#gamePage", addSLCount());
-        $(document).on("swiperight", "#gamePage", addSRCount());
-        $(document).on("tap", "#gamePage", addTCount());
     </script>
 </body>
 </html>
