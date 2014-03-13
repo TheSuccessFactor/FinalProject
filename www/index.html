@@ -80,7 +80,7 @@
                   </b>
               </p>
           </div>
-          <a class="navButton" id="startButton" data-role="button" data-transition="turn"
+          <a class="navButton" id="startButton" data-role="button" data-transition="flip"
           data-theme="a" href="#gamePage">
               START
           </a>
@@ -204,7 +204,7 @@
         }
         
         $('#gamePage').on('pagebeforeshow', function(){
-            $('#gamePage').live('swipeleft swiperight tap', function(event){
+            $('.gamePage').on('swipeleft swiperight tap', function(event){
                 console.log(event.type);
                 if(event.type == "swipeleft") {
                     addSLCount;
