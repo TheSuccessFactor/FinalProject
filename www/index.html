@@ -139,6 +139,9 @@
     
     <!-- this is all the code for the game page -->
     <script>
+        //ALWAYS MAKE SURE PHONEGAP HAS LOADED
+        document.addEventListener("deviceready", onDeviceReady, false);
+        
         /*INITIALIZE THE GLOBAL COUNTER VALUES FOR THIS PAGE!*/
         var rNum = 0;
         var slNum = 0;
@@ -146,19 +149,22 @@
         var tNum = 0;
         var thNum = 0;
         
-        //I DON'T WANT TO DEAL WITH THE APP STUFF SO HERE'S MY VERSION!
+        //WHEN PHONEGAP IS READY I WANT TO LISTEN TO THE ACCELEROMETER AND THE ITEMS!
         function onDeviceReady() {
             navigator.accelerometer.getCurrentAcceleration(onRotateSuccess, onRotateError);
         }
 
         //onRotateSuccess: Get a snapshot of the current acceleration
         function onRotateSuccess(acceleration) {
-            /*alert('Acceleration X: ' + acceleration.x + '\n' +
+            $("#rText").text(function(){" " + rNum;});
+            alert('Acceleration X: ' + acceleration.x + '\n' +
             'Acceleration Y: ' + acceleration.y + '\n' +
             'Acceleration Z: ' + acceleration.z + '\n' +
-            'Timestamp: '      + acceleration.timestamp + '\n');*/
+            'Timestamp: '      + acceleration.timestamp + '\n');
             //increase the counter for the input.
-            $("#rText").text(rNum++);
+            rNum++;
+            //update the rotation counter.
+            $("#rText").text(function(){" " + rNum;});
         }
         
         // onError: Failed to get the acceleration
