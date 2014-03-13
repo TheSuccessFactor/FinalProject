@@ -43,94 +43,6 @@
     
     <!-- THESE WILL BOUND THE SWIPE COMMANDS ON THE 2ND PAGE! -->
     <script>
-    </script>
-    
-        <!-- this is all the code for the game page -->
-    <script>
-        //ALWAYS MAKE SURE PHONEGAP HAS LOADED
-        document.addEventListener("deviceready", onDeviceReady, false);
-        
-        /*INITIALIZE THE GLOBAL COUNTER VALUES FOR THIS PAGE!*/
-        var rNum = 0;
-        var slNum = 0;
-        var srNum = 0;
-        var tNum = 0;
-        var thNum = 0;
-        var isReady = false;
-        $('#rText').html("ROTATE YOUR DEVICE: " + rNum);
-        $('#srText').html("SWIPE RIGHT: " + srNum);
-        $('#slText').html("SWIPE LEFT: " + slNum);
-        $('#tapText').html("TAP THE SCREEN: " + tNum);
-        $('#thText').html("TAP AND HOLD: " + thNum);
-        
-        /*increase # of times user swiped left*/
-        function addSLCount()
-        {
-            slNum++;
-            alert('SWIPED LEFT!!');
-            //$("#slText").text(function(){" " + slNum;});
-            //document.querySelector("#slText").innerHTML = slNum;
-        }
-        
-        /*increase # of times user swiped right*/
-        function addSRCount()
-        {
-            srNum++;
-            alert('SWIPED RIGHT!!');
-            //$("#srText").text(function(){" " + srNum;});
-            //var temp = Text(" " + srNum);
-            //document.querySelector("#srText").innerHTML = srNum;
-        }
-        
-        function addTCount()
-        {
-            tNum++;
-            alert('TAPPED THE SCREEN!!');
-            //$("#tText").text(function(){" " + tNum;});
-            //document.querySelector("#tapText").innerHTML = tNum;
-        }
-        
-        //WHEN PHONEGAP IS READY I WANT TO LISTEN TO THE ACCELEROMETER AND THE ITEMS!
-        function onDeviceReady() {
-            navigator.accelerometer.getCurrentAcceleration(onRotateSuccess, onRotateError);
-            isReady = true;
-        }
-
-        //onRotateSuccess: Get a snapshot of the current acceleration
-        function onRotateSuccess(acceleration) {
-            $("#rText").text(function(){" " + rNum;});
-            alert('Acceleration X: ' + acceleration.x + '\n' +
-            'Acceleration Y: ' + acceleration.y + '\n' +
-            'Acceleration Z: ' + acceleration.z + '\n' +
-            'Timestamp: '      + acceleration.timestamp + '\n');
-            //increase the counter for the input.
-            rNum++;
-            //update the rotation counter.
-            $('#rText').html("ROTATE YOUR DEVICE: " + rNum);
-        }
-        
-        // onError: Failed to get the acceleration
-        function onRotateError() {
-            alert('onError!');
-        }
-        
-        /*$('#gamePage').on('pagebeforeshow', function(){
-            //OKAY LET'S TEST FOR SWIPING!
-            $('.gamePage').bind('swipeleft swiperight tap', function(event){
-                console.log(event.type);
-                if(event.type == "swipeleft") {
-                    addSLCount;
-                }
-                
-                if(event.type == "swiperight") {
-                    addSRCount;
-                }
-                
-                if(event.type == "tap") {
-                    addTCount;
-                }
-            });
-        });*/
         
     </script>
 </head>
@@ -150,6 +62,7 @@
     </script>
     
     <script>
+        
     </script>
     
     <!--HERE IS THE START OF MY CODIQA LAYOUT-->
@@ -220,5 +133,82 @@
       </div>
        <!--<div id="lastItem" onload="pageStartup()"></div>-->
     </div>
+    
+    <!-- this is all the code for the game page -->
+    <script>
+        //ALWAYS MAKE SURE PHONEGAP HAS LOADED
+        document.addEventListener("deviceready", onDeviceReady, false);
+        
+        /*INITIALIZE THE GLOBAL COUNTER VALUES FOR THIS PAGE!*/
+        var rNum = 0;
+        var slNum = 0;
+        var srNum = 0;
+        var tNum = 0;
+        var thNum = 0;
+        $('#rText').html("ROTATE YOUR DEVICE: " + rNum);
+        $('#srText').html("SWIPE RIGHT: " + srNum);
+        $('#slText').html("SWIPE LEFT: " + slNum);
+        $('#tapText').html("TAP THE SCREEN: " + tNum);
+        $('#thText').html("TAP AND HOLD: " + thNum);
+        
+        /*increase # of times user swiped left*/
+        function addSLCount(event)
+        {
+            slNum++;
+            alert('SWIPED LEFT!!');
+            $('#slText').html("SWIPE LEFT: " + slNum);
+        }
+        
+        /*increase # of times user swiped right*/
+        function addSRCount(event)
+        {
+            srNum++;
+            alert('SWIPED RIGHT!!');
+            $('#srText').html("SWIPE RIGHT: " + srNum);
+        }
+        
+        function addTCount(event)
+        {
+            tNum++;
+            alert('TAPPED THE SCREEN!!');
+            $('#tapText').html("TAP THE SCREEN: " + tNum);
+        }
+        
+        //WHEN PHONEGAP IS READY I WANT TO LISTEN TO THE ACCELEROMETER AND THE ITEMS!
+        function onDeviceReady() {
+            navigator.accelerometer.getCurrentAcceleration(onRotateSuccess, onRotateError);
+            isReady = true;
+        }
+
+        //onRotateSuccess: Get a snapshot of the current acceleration
+        function onRotateSuccess(acceleration) {
+            $("#rText").text(function(){" " + rNum;});
+            alert('Acceleration X: ' + acceleration.x + '\n' +
+            'Acceleration Y: ' + acceleration.y + '\n' +
+            'Acceleration Z: ' + acceleration.z + '\n' +
+            'Timestamp: '      + acceleration.timestamp + '\n');
+            //increase the counter for the input.
+            rNum++;
+            //update the rotation counter.
+            $('#rText').html("ROTATE YOUR DEVICE: " + rNum);
+            $('#srText').html("SWIPE RIGHT: " + srNum);
+            $('#slText').html("SWIPE LEFT: " + slNum);
+            $('#tapText').html("TAP THE SCREEN: " + tNum);
+            $('#thText').html("TAP AND HOLD: " + thNum);
+        }
+        
+        // onError: Failed to get the acceleration
+        function onRotateError() {
+            alert('onError!');
+        }
+        
+        $('#gamePage').on('pageshow', function(){
+            //OKAY LET'S TEST FOR SWIPING AND TAPPING!
+            $('#gamePage').on( 'swipeleft', addSLCount );
+            $('#gamePage').on( 'swiperight', addSRCount );
+            $('#gamePage').bind( 'tap', addTCount );
+        });
+        
+    </script>
 </body>
 </html>
