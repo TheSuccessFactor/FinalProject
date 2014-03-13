@@ -108,27 +108,27 @@
           <div class="counterText">
               <p style="text-align: center;" data-mce-style="text-align: center;">
                 ROTATE YOUR DEVICE: </p>
-              <div class="counterText" id="rText" data-controltype="textblock">
+              <div class="counterText" id="rText">
               </div>
               <br>
               <p style="text-align: center;" data-mce-style="text-align: center;">
                   SWIPE RIGHT: </p>
-              <div class="counterText" id="srText" data-controltype="textblock">
+              <div class="counterText" id="srText">
               </div>
               <br>
               <p style="text-align: center;" data-mce-style="text-align: center;">
                 SWIPE LEFT: </p>
-              <div class="counterText" id="slText" data-controltype="textblock">
+              <div class="counterText" id="slText">
               </div>
               <br>
-              <p style="text-align: center;">
+              <p style="text-align: center;" data-mce-style="text-align: center;">
                   TAP THE SCREEN: </p>
-              <div class="counterText" id="tapText" data-controltype="textblock">
+              <div class="counterText" id="tapText">
               </div>
               <br>
-              <p style="text-align: center;">
+              <p style="text-align: center;" data-mce-style="text-align: center;">
                   TAP AND HOLD: </p>
-              <div class="counterText" id="thText" data-controltype="textblock">
+              <div class="counterText" id="thText">
               </div>
               <br>
           </div>
@@ -174,6 +174,7 @@
         function addSLCount()
         {
             slNum++;
+            alert('SWIPED LEFT!!');
             $("#slText").text(function(){" " + slNum;});
         }
         
@@ -181,12 +182,14 @@
         function addSRCount()
         {
             srNum++;
+            alert('SWIPED RIGHT!!');
             $("#srText").text(function(){" " + srNum;});
         }
         
         function addTCount()
         {
             tNum++;
+            alert('TAPPED THE SCREEN!!');
             $("#tText").text(function(){" " + tNum;});
         }
         
