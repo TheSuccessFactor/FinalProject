@@ -131,6 +131,7 @@
               BACK
           </a>
       </div>
+       <div id="lastItem" onload="pageStartup()"></div>
     </div>
     
     <!-- this is all the code for the game page -->
@@ -202,9 +203,18 @@
             alert('onError!');
         }
         
-        $(function(){ $('#gamePage').bind('swipeleft', addSLCount());});
+        function pageStartup()
+        {
+            var d1 = document.getElementById("gamePage")[0];
+            d1.addEventListener('swipeleft', addSLCount, false);
+            d1.addEventListener('swiperight', addSRCount, false);
+            d1.addEventListener('tap', addTCount, false);
+            log("initialized touches!");
+        }
+        
+        /*$(function(){ $('#gamePage').bind('swipeleft', addSLCount());});
         $(function(){ $('#gamePage').bind('swiperight', addSRCount());});
-        $(function(){ $('#gamePage').bind('tap', addTCount());});
+        $(function(){ $('#gamePage').bind('tap', addTCount());});*/
         
     </script>
 </body>
