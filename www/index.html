@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<!--
-    CLASS: Mobile Design
-    ASSIGNMENT: Final Project
+<!-- 
     NAME: Andrew Turner
-    DATE: 03/07/2014
+    ASSIGNMENT: Final Project
+    DATE: 03/7/2014
 -->
-
 <!--
     Licensed to the Apache Software Foundation (ASF) under one
     or more contributor license agreements.  See the NOTICE file
@@ -25,26 +23,128 @@
     under the License.
 -->
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="format-detection" content="telephone=no" />
-        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
-    </head>
-    <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    
+    <!--LINK MY CSS FILES HERE-->
+    <link href="css/codiqa.ext.min.css" rel="stylesheet">
+    <link href="css/jquery.mobile-1.4.2.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/index.css" />
+    
+    <!--LINK MY JS FILES HERE!-->
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <script src="js/jquery.mobile-1.4.2.min.js"></script>
+    <script src="js/codiqa.ext.min.js"></script>
+    <script src="js/final-project.js"></script>
+    <title>Final Project</title>
+    
+</head>
+<body>
+    <!--Flashing blinking icon thing, dunno what to do with it.-->
+    <div class="app">
+        <h1>PhoneGap</h1>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
         </div>
-        <script type="text/javascript" src="phonegap.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script type="text/javascript">
-            app.initialize();
-        </script>
-    </body>
+    </div>
+    <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+    
+    <!--HERE IS THE START OF MY CODIQA LAYOUT-->
+    <div class="normalPage" data-role="page" data-control-title="Home" data-theme="a"
+  id="page1">
+      <div data-theme="a" data-role="header">
+          <h3>
+              HOME PAGE
+          </h3>
+      </div>
+      <div data-role="content" style="padding: 1px">
+          <div data-controltype="textblock">
+              <p style="text-align: center;">
+                  <b>
+                      This is a quick demonstrations of cellphone capabilities
+                      <br>
+                  </b>
+              </p>
+          </div>
+          <a class="navButton" id="startButton" data-role="button" data-transition="turn"
+          data-theme="a" href="#gamePage">
+              START
+          </a>
+          <a class="navButton" id="miscB" data-role="button" data-transition="flip"
+          data-theme="a" href="#gamePage">
+              placeholder
+          </a>
+      </div>
+  </div>
+  <div class="gamePage" data-role="page" data-control-title="ROTATE" data-theme="a"
+  id="gamePage" style="background: url('img/pg01.jpg') no-repeat">
+      <div data-theme="a" data-role="header">
+          <h3 class="hideHeader" id="rotateHeader">
+              THE GAME
+          </h3>
+      </div>
+      <div data-role="content" style="padding: 1px">
+          <div id="iText" data-controltype="textblock">
+              <p style="text-align: center;" data-mce-style="text-align: center;">
+                  <b>
+                      HOW MANY TIMES CAN YOU
+                      <br>
+                  </b>
+              </p>
+              <p style="text-align: center;" data-mce-style="text-align: center;">
+                  <b>
+                      <br>
+                  </b>
+              </p>
+          </div>
+          <div class="pageImage" id="cImage" style=" text-align:center" data-controltype="image">
+              <img style="width: 50%; height: 200%" src="https://s3.amazonaws.com/assets.codiqa.com/wtgIvXLMSPGKjIOo3ubm_pg01.jpg">
+          </div>
+          <div class="counterText" id="rText" data-controltype="textblock">
+              <p style="text-align: center;" data-mce-style="text-align: center;">
+                  ROTATE YOUR DEVICE: 0
+                  <br>
+                  <br>
+              </p>
+          </div>
+          <div class="counterText" id="srText" data-controltype="textblock">
+              <p style="text-align: center;" data-mce-style="text-align: center;">
+                  SWIPE RIGHT: 0
+                  <br>
+              </p>
+          </div>
+          <div class="counterText" id="slText" data-controltype="textblock">
+              <p style="text-align: center;" data-mce-style="text-align: center;">
+                  SWIPE LEFT: 0
+                  <br>
+              </p>
+          </div>
+          <div class="counterText" id="tapText" data-controltype="textblock">
+              <p style="text-align: center;">
+                  TAP THE SCREEN: 0
+                  <br>
+              </p>
+          </div>
+          <div class="counterText" id="thText" data-controltype="textblock">
+              <p style="text-align: center;">
+                  TAP AND HOLD: 0
+                  <br>
+                  <br>
+              </p>
+          </div>
+          <a class="navButton" id="backButton" data-role="button" data-transition="flip"
+          data-theme="a" href="#page1">
+              BACK
+          </a>
+      </div>
+  </div>    
+</body>
 </html>
