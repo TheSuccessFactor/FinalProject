@@ -41,6 +41,9 @@
     <script src="js/final-project.js"></script>
     <title>Final Project</title>
     
+    <!-- THESE WILL BOUND THE SWIPE COMMANDS ON THE 2ND PAGE! -->
+    <script>
+    </script>
 </head>
 <body>
     <!--Flashing blinking icon thing, dunno what to do with it.-->
@@ -58,7 +61,7 @@
     </script>
     
     <!--HERE IS THE START OF MY CODIQA LAYOUT-->
-    <div class="normalPage" data-role="page" data-control-title="Home" data-theme="a"
+    <div class="normalPage" data-role="page" data-control-title="Home" data-theme="b"
   id="page1">
       <div data-theme="a" data-role="header">
           <h3>
@@ -167,10 +170,34 @@
             $("#rText").text(function(){" " + rNum;});
         }
         
+        /*increase # of times user swiped left*/
+        function addSLCount()
+        {
+            slNum++;
+            $("#slText").text(function(){" " + slNum;});
+        }
+        
+        /*increase # of times user swiped right*/
+        function addSRCount()
+        {
+            srNum++;
+            $("#srText").text(function(){" " + srNum;});
+        }
+        
+        function addTCount()
+        {
+            tNum++;
+            $("#tText").text(function(){" " + tNum;});
+        }
+        
         // onError: Failed to get the acceleration
         function onRotateError() {
             alert('onError!');
         }
+        
+        $(document).on("swipeleft", "#gamePage", addSLCount());
+        $(document).on("swiperight", "#gamePage", addSRCount());
+        $(document).on("tap", "#gamePage", addTCount());
     </script>
 </body>
 </html>
