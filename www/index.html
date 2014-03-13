@@ -92,59 +92,79 @@
           </h3>
       </div>
       <div data-role="content" style="padding: 1px">
+          <div class="pageImage" id="cImage" style=" text-align:center" data-controltype="image">
+              <img style="width: 35%; height: 35%" src="img/pg01.jpg">
+          </div>
           <div id="iText" data-controltype="textblock">
               <p style="text-align: center;" data-mce-style="text-align: center;">
                   <b>
-                      HOW MANY TIMES CAN YOU
-                      <br>
-                  </b>
-              </p>
-              <p style="text-align: center;" data-mce-style="text-align: center;">
-                  <b>
-                      <br>
+                      HOW MANY TIMES CAN YOU<br>
                   </b>
               </p>
           </div>
-          <div class="pageImage" id="cImage" style=" text-align:center" data-controltype="image">
-              <img style="width: 50%; height: 200%" src="https://s3.amazonaws.com/assets.codiqa.com/wtgIvXLMSPGKjIOo3ubm_pg01.jpg">
-          </div>
-          <div class="counterText" id="rText" data-controltype="textblock">
+          <div class="counterText">
               <p style="text-align: center;" data-mce-style="text-align: center;">
-                  ROTATE YOUR DEVICE: 0
-                  <br>
-                  <br>
-              </p>
-          </div>
-          <div class="counterText" id="srText" data-controltype="textblock">
+                ROTATE YOUR DEVICE: </p>
+              <div class="counterText" id="rText" data-controltype="textblock">
+              </div>
+              <br>
               <p style="text-align: center;" data-mce-style="text-align: center;">
-                  SWIPE RIGHT: 0
-                  <br>
-              </p>
-          </div>
-          <div class="counterText" id="slText" data-controltype="textblock">
+                  SWIPE RIGHT: </p>
+              <div class="counterText" id="srText" data-controltype="textblock">
+              </div>
+              <br>
               <p style="text-align: center;" data-mce-style="text-align: center;">
-                  SWIPE LEFT: 0
-                  <br>
-              </p>
-          </div>
-          <div class="counterText" id="tapText" data-controltype="textblock">
+                SWIPE LEFT: </p>
+              <div class="counterText" id="slText" data-controltype="textblock">
+              </div>
+              <br>
               <p style="text-align: center;">
-                  TAP THE SCREEN: 0
-                  <br>
-              </p>
-          </div>
-          <div class="counterText" id="thText" data-controltype="textblock">
+                  TAP THE SCREEN: </p>
+              <div class="counterText" id="tapText" data-controltype="textblock">
+              </div>
+              <br>
               <p style="text-align: center;">
-                  TAP AND HOLD: 0
-                  <br>
-                  <br>
-              </p>
+                  TAP AND HOLD: </p>
+              <div class="counterText" id="thText" data-controltype="textblock">
+              </div>
+              <br>
           </div>
+          
           <a class="navButton" id="backButton" data-role="button" data-transition="flip"
           data-theme="a" href="#page1">
               BACK
           </a>
       </div>
-  </div>    
+    </div>
+    
+    <!-- this is all the code for the game page -->
+    <script>
+        /*INITIALIZE THE GLOBAL COUNTER VALUES FOR THIS PAGE!*/
+        var rNum = 0;
+        var slNum = 0;
+        var srNum = 0;
+        var tNum = 0;
+        var thNum = 0;
+        
+        //I DON'T WANT TO DEAL WITH THE APP STUFF SO HERE'S MY VERSION!
+        function onDeviceReady() {
+            navigator.accelerometer.getCurrentAcceleration(onRotateSuccess, onRotateError);
+        }
+
+        //onRotateSuccess: Get a snapshot of the current acceleration
+        function onRotateSuccess(acceleration) {
+            /*alert('Acceleration X: ' + acceleration.x + '\n' +
+            'Acceleration Y: ' + acceleration.y + '\n' +
+            'Acceleration Z: ' + acceleration.z + '\n' +
+            'Timestamp: '      + acceleration.timestamp + '\n');*/
+            //increase the counter for the input.
+            $("#rText").text(rNum++);
+        }
+        
+        // onError: Failed to get the acceleration
+        function onRotateError() {
+            alert('onError!');
+        }
+    </script>
 </body>
 </html>
