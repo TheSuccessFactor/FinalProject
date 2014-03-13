@@ -131,7 +131,7 @@
               BACK
           </a>
       </div>
-       <div id="lastItem" onload="pageStartup()"></div>
+       <!--<div id="lastItem" onload="pageStartup()"></div>-->
     </div>
     
     <!-- this is all the code for the game page -->
@@ -203,14 +203,31 @@
             alert('onError!');
         }
         
-        function pageStartup()
+        $('#gamePage').on('pagebeforeshow', function(){
+            $('#gamePage').live('swipeleft swiperight tap', function(event){
+                console.log(event.type);
+                if(event.type == "swipeleft") {
+                    addSLCount;
+                }
+                
+                if(event.type == "swiperight") {
+                    addSRCount;
+                }
+                
+                if(event.type == "tap") {
+                    addTCount;
+                }
+            });
+        });
+        
+        /*function pageStartup()
         {
             var d1 = document.getElementById("gamePage")[0];
             d1.addEventListener('swipeleft', addSLCount, false);
             d1.addEventListener('swiperight', addSRCount, false);
             d1.addEventListener('tap', addTCount, false);
             log("initialized touches!");
-        }
+        }*/
         
         /*$(function(){ $('#gamePage').bind('swipeleft', addSLCount());});
         $(function(){ $('#gamePage').bind('swiperight', addSRCount());});
