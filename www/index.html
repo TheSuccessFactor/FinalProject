@@ -151,6 +151,25 @@
         $('#tapText').html("TAP THE SCREEN: " + tNum);
         $('#thText').html("TAP AND HOLD: " + thNum);
         
+        //increase # of times device was rotated
+        function addRCount(event)
+        {
+            switch(window.orientation)
+            {
+                    case -90:
+                    case 90:
+                        alert('landscape mode');
+                        break;
+                    default:
+                        alert('portrait');
+                        break;
+            }
+            
+            rNum++;
+            alert('ROTATED THE SCREEN!!');
+            $('#rText').html("ROTATED THE SCREEN: " + rNum);
+        }
+        
         /*increase # of times user swiped left*/
         function addSLCount(event)
         {
@@ -174,9 +193,17 @@
             $('#tapText').html("TAP THE SCREEN: " + tNum);
         }
         
-        //WHEN PHONEGAP IS READY I WANT TO LISTEN TO THE ACCELEROMETER AND THE ITEMS!
+        function addTHCount(event)
+        {
+            thNum++;
+            alert('TAPPED AND HELD THE SCREEN!!');
+            $('#thText').html("TAP THE SCREEN: " + thNum);
+        }
+        
+        //WHEN PHONEGAP IS READY I WANT TO LISTEN TO THE ACCELEROMETER
         function onDeviceReady() {
             navigator.accelerometer.getCurrentAcceleration(onRotateSuccess, onRotateError);
+            //set it so that we know the device is ready for later page loads.
             isReady = true;
         }
 
@@ -207,6 +234,11 @@
             $('#gamePage').on( 'swipeleft', addSLCount );
             $('#gamePage').on( 'swiperight', addSRCount );
             $('#gamePage').bind( 'tap', addTCount );
+            $('#gamePage').bind( 'taphold', addTHCount);
+            window.addEventListener('orientationchange', addRCount);
+            /*if(isReady)
+            {
+            }*/
         });
         
     </script>
