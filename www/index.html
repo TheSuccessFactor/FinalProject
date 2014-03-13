@@ -90,8 +90,8 @@
           </a>
       </div>
   </div>
-  <div class="gamePage" data-role="page" data-control-title="ROTATE" data-theme="a"
-  id="gamePage" style="background: url('img/pg01.jpg') no-repeat">
+  <div class="gamePage" data-role="page" data-control-title="ROTATE" data-theme="b"
+  id="gamePage">
       <div data-theme="a" data-role="header">
           <h3 class="hideHeader" id="rotateHeader">
               THE GAME
@@ -110,29 +110,19 @@
           </div>
           <div class="counterText">
               <p style="text-align: center;" data-mce-style="text-align: center;">
-                ROTATE YOUR DEVICE: </p>
-              <div id="rText">
-              </div>
+                ROTATE YOUR DEVICE: </p><div id="rText"></div>
               <br>
               <p style="text-align: center;" data-mce-style="text-align: center;">
-                  SWIPE RIGHT: </p>
-              <div id="srText">
-              </div>
+                  SWIPE RIGHT: </p><div id="srText"></div>
               <br>
               <p style="text-align: center;" data-mce-style="text-align: center;">
-                SWIPE LEFT: </p>
-              <div id="slText">
-              </div>
+                SWIPE LEFT: </p><div id="slText"></div>
               <br>
               <p style="text-align: center;" data-mce-style="text-align: center;">
-                  TAP THE SCREEN: </p>
-              <div id="tapText">
-              </div>
+                  TAP THE SCREEN: </p><div id="tapText"></div>
               <br>
               <p style="text-align: center;" data-mce-style="text-align: center;">
-                  TAP AND HOLD: </p>
-              <div id="thText">
-              </div>
+                  TAP AND HOLD: </p><div id="thText"></div>
               <br>
           </div>
           
@@ -154,6 +144,7 @@
         var srNum = 0;
         var tNum = 0;
         var thNum = 0;
+        var isReady = false;
         document.querySelector("#slText").innerHTML = slNum;
         document.querySelector("#srText").innerHTML = srNum;
         document.querySelector("#tapText").innerHTML = tNum;
@@ -174,6 +165,7 @@
             srNum++;
             alert('SWIPED RIGHT!!');
             //$("#srText").text(function(){" " + srNum;});
+            //var temp = Text(" " + srNum);
             document.querySelector("#srText").innerHTML = srNum;
         }
         
@@ -188,9 +180,7 @@
         //WHEN PHONEGAP IS READY I WANT TO LISTEN TO THE ACCELEROMETER AND THE ITEMS!
         function onDeviceReady() {
             navigator.accelerometer.getCurrentAcceleration(onRotateSuccess, onRotateError);
-            $('#gamePage').live("swipeleft", addSLCount());
-            $('#gamePage').live("swiperight", addSRCount());
-            $('#gamePage').live("tap", addTCount());
+            isReady = true;
         }
 
         //onRotateSuccess: Get a snapshot of the current acceleration
@@ -211,6 +201,11 @@
         function onRotateError() {
             alert('onError!');
         }
+        
+        $(function(){ $('#gamePage').bind('swipeleft', addSLCount());});
+        $(function(){ $('#gamePage').bind('swiperight', addSRCount());});
+        $(function(){ $('#gamePage').bind('tap', addTCount());});
+        
     </script>
 </body>
 </html>
