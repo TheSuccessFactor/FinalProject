@@ -88,7 +88,7 @@
           </a>
           <a class="navButton" id="miscB" data-role="button" data-transition="flip"
           data-theme="a" href="#gamePage">
-              placeholder
+              Comic Viewer
           </a>
       </div>
   </div>
@@ -169,14 +169,10 @@
                     case 90:
                         alert('good landscape mode');
                         break;
-                    case 180:
-                        alert('good portrait');
-                        break;
-                    case 0:
-                        alert('bad portrait');
+                    else:
+                        alert('portrait');
                         break;
             }
-            
             rNum++;
             //alert('ROTATED THE SCREEN!!');
             $('#rText').html("ROTATED THE SCREEN: " + rNum);
@@ -303,13 +299,8 @@
         function onRotateError() {
             alert('CANNOT LISTEN TO ACCELEROMETER!');
         }
-        
-        function stopWatching ()
-        {
-            alert('STOPPED LISTENING TO THE ACCELEROMETER!');
-            navigator.accelerometer.clearWatch(watchID);
-        }
-        
+                
+        //WHEN WE FIRST LOAD THE GAME PAGE
         $('#gamePage').on('pageshow', function(){
             //OKAY LET'S TEST FOR SWIPING AND TAPPING!
             //bind the swipe events from jQM
@@ -318,7 +309,6 @@
             //bind the tap events
             $('.gamePage').bind( 'tap', addTCount );
             $('.gamePage').bind( 'taphold', addTHCount);
-            $('#backButton').bind('tap', stopWatching);
             //bind the orientation change event.
             window.addEventListener('orientationchange', addRCount);
             //if the device is ready after our page loads
@@ -327,6 +317,13 @@
                 //start listening to the accelerometer.
                 watchID = navigator.accelerometer.watchAcceleration(listen4Shakes, onRotateError,{frequency:200});
             }
+        });
+        
+        //WHEN WE LEAVE THE GAME PAGE WE WANT TO STOP LISTENING TO THE
+        //ACCELEROMETER!
+        $('#gamePage').on('pagebeforehide', function() {
+            alert('STOPPED LISTENING TO THE ACCELEROMETER!');
+            navigator.accelerometer.clearWatch(watchID);
         });
         
     </script>
