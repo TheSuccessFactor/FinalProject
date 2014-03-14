@@ -87,7 +87,7 @@
               START
           </a>
           <a class="navButton" id="miscB" data-role="button" data-transition="flip"
-          data-theme="a" href="#gamePage">
+          data-theme="a" href="#cvPage">
               Comic Viewer
           </a>
       </div>
@@ -131,6 +131,13 @@
       </div>
     </div>
     
+    <!-- THE START OF MY COMIC VIEWER PAGES! -->
+    <div class="cvPage" data-role="page" id="cvPage" data-transition="flip" data-theme="b">
+        <div data-role = "content">
+            <img src= "img/batman/1.jpg" id="comicPage">
+        </div>
+    </div>
+    
     <!-- this is all the code for the game page -->
     <script>
         /*INITIALIZE THE GLOBAL COUNTER VALUES FOR THIS PAGE!*/
@@ -142,6 +149,7 @@
         var xNum = 0; //# of x axis shakes.
         var yNum = 0; //# of y axis shakes.
         var zNum = 0; //# of z axis shakes.
+        var pageCount = 1;
         var lastX, lastY, lastZ; //used to calculate for device shaking.
         var sCounter = 0; //also used to calculate for device shaking.
         var isReady = false;
@@ -299,7 +307,29 @@
         function onRotateError() {
             alert('CANNOT LISTEN TO ACCELEROMETER!');
         }
-                
+        
+        //goes to the previous comic page
+        function prevPage() {
+            //if we are not on the first page...
+           if(pageCount > 1) {
+               //change the comic page's image source to the previous page.
+               var temp = "img/batman/" + (pageCount - 1) + ".jpg";
+               $('#comicPage').attr('src', temp);
+               pageCount--;
+           }
+        }
+        
+        //goes to the next comic page
+        function nextPage() {
+            //if we are not on the last page...
+           if(pageCount < 9) {
+               //change the comic page's image source to the next page.
+               var temp = "img/batman/" + (pageCount + 1) + ".jpg";
+               $('#comicPage').attr('src', temp);
+               pageCount++;
+           }
+        }
+        
         //WHEN WE FIRST LOAD THE GAME PAGE
         $('#gamePage').on('pageshow', function(){
             //OKAY LET'S TEST FOR SWIPING AND TAPPING!
@@ -326,6 +356,12 @@
             navigator.accelerometer.clearWatch(watchID);
         });
         
+        //THIS DEALS WITH CHANGING THE PAGES IN THE COMIC VIEWER!
+        $('#cvPage').on('pageshow', function(){
+            $('#comicPage').on('swipeleft', prevPage);
+            $('#comicPage').on('swiperight', nextPage);
+            $('#comicPage').bind('tap', nextPage );
+        });
     </script>
 </body>
 </html>
